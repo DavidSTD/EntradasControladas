@@ -1,35 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react"
 
-function App() {
-  const [count, setCount] = useState(0)
+function App({ onSubmit }){
+    const [term, setTerm] = useState('')
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    const handleFormSubmit = (event) => {
+        event.preventDefault()
+    console.log('Necesito decirle al componente padre sobre los datos')
+    onSubmit(term)
+    }
+
+    const handleChange = (event) => {
+        setTerm(event.target.value)
+    }
+
+    const handleClick = () => {
+        onSubmit(term)
+    }
+    return(
+        <div>
+            <form onSubmit={handleFormSubmit}>
+              <label>Escriba aquí:</label><br></br>
+                <input onChange={handleChange} value={term} />
+            </form> 
+            <h3>Se imprime su texto abajo:</h3>
+            <p>{term}</p>
+        </div>
+    )
 }
 
 export default App
