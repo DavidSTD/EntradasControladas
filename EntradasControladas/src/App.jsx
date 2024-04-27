@@ -5,8 +5,6 @@ function App({ onSubmit }){
 
     const handleFormSubmit = (event) => {
         event.preventDefault()
-    console.log('Necesito decirle al componente padre sobre los datos')
-    onSubmit(term)
     }
 
     const handleChange = (event) => {
